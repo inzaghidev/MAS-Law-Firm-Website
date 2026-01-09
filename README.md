@@ -2,6 +2,9 @@
 
 Merupakan Project Magang Web Developer (Full Stack) M.A.S. Law Firm untuk membuat Website Kantor Pengacara Hukum. Project ini dibuat dengan Laravel, React.js, dan Tailwind CSS.
 
+Link :
+[lawyermas.com](https://lawyermas.com)
+
 This Project is Powered by : M. Amar Syeban Law Firm
 ![M.A.S. Law Firm](./images/mas-law-firm-logo.png)
 
@@ -99,7 +102,7 @@ Adapun Struktur Folder Direktori dari Project ini adalah :
     │   ├── 📁storage/
     │   │── 📁tests/
     │   └── .env
-    ├── 📁website-blog-ui/                             # Program Python OpenCV
+    ├── 📁website-blog-ui/                             # Program Web Blog
     │   ├── 📁css/
     │   │   └── style.css                              # File CSS
     │   │── 📁js/
