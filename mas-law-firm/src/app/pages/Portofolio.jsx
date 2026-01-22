@@ -1,36 +1,59 @@
-import { useState } from "react";
-import portfolioImg1 from "../../assets/reddream-services-partnership.jpeg";
-import portfolioImg2 from "../../assets/islamic-book-fair.jpeg";
-import portfolioImg3 from "../../assets/pertemuan-strategis-tim-legal.jpeg";
-import portfolioImg4 from "../../assets/legal-advisory.jpeg";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { X } from "lucide-react";
+import portfolioImg1 from "../../assets/reddream-services-partnership.png";
+import portfolioImg2 from "../../assets/islamic-book-fair.png";
+import portfolioImg3 from "../../assets/pertemuan-strategis-tim-legal.png";
+import portfolioImg4 from "../../assets/legal-advisory.png";
 
 export function Portofolio() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [selectedCase, setSelectedCase] = useState(null);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedCase) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [selectedCase]);
 
   const portfolioItems = [
     {
       id: 1,
-      title: "Kerjasama dengan RedDream Services",
+      title: "Pendirian PT PMA",
       description: "Konsultasi Hukum Bisnis & Perizinan",
       image: portfolioImg1,
+      detailedDescription:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.\n\nTotam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
     },
     {
       id: 2,
-      title: "Islamic Book Fair Event",
+      title: "Internatioal Client",
       description: "Legal Advisory & Event Partnership",
       image: portfolioImg2,
+      detailedDescription:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.\n\nDonec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.\n\nAenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat.",
     },
     {
       id: 3,
-      title: "Konsultasi Tim Legal",
+      title: "Pendampingan Pemeriksaan BPJS Ketenagakerjaan",
       description: "Pertemuan Strategis dengan Klien Korporat",
       image: portfolioImg3,
+      detailedDescription:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit mollis lacus. Nam adipiscing. Vestibulum eu odio. Vivamus laoreet. Nullam tincidunt adipiscing enim. Phasellus tempus.\n\nProin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. Fusce neque. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor.\n\nVivamus aliquet elit ac nisl. Fusce fermentum odio nec arcu. Vivamus euismod mauris. In ut quam vitae odio lacinia tincidunt. Praesent ut ligula non mi varius sagittis. Cras sagittis. Praesent ac sem eget est egestas volutpat.",
     },
     {
       id: 4,
-      title: "Layanan Konsultasi Profesional",
+      title: "Meditor",
       description: "Pendampingan Hukum & Legal Advisory",
       image: portfolioImg4,
+      detailedDescription:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.\n\nPraesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.\n\nCurabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.",
     },
   ];
 
@@ -54,6 +77,7 @@ export function Portofolio() {
               className="relative aspect-[4/3] rounded-lg overflow-hidden bg-[#252525] cursor-pointer group"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
+              onClick={() => setSelectedCase(item)}
             >
               {/* Image */}
               <img
@@ -88,6 +112,79 @@ export function Portofolio() {
           ))}
         </div>
       </div>
+
+      {/* Case Detail Modal */}
+      <AnimatePresence>
+        {selectedCase && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
+          >
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-[#191919]/90 backdrop-blur-sm"
+              onClick={() => setSelectedCase(null)}
+            />
+
+            {/* Modal Content */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedCase(null)}
+                className="absolute top-4 right-4 z-10 p-2 bg-[#191919]/10 hover:bg-[#191919]/20 rounded-full transition-colors text-[#191919]"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              {/* Image Section */}
+              <div className="w-full aspect-[16/9] bg-gray-100 overflow-hidden">
+                <img
+                  src={selectedCase.image}
+                  alt={selectedCase.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Content Section */}
+              <div className="p-8 md:p-12">
+                {/* Case Title */}
+                <div className="mb-8">
+                  <div className="w-16 h-1 bg-[#AE8737] mb-4"></div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#191919] mb-3">
+                    {selectedCase.title}
+                  </h2>
+                  <p className="text-xl text-[#AE8737] font-semibold">
+                    {selectedCase.description}
+                  </p>
+                </div>
+
+                {/* Divider */}
+                <div className="h-px w-full bg-gray-200 mb-8"></div>
+
+                {/* Case Description */}
+                <div className="prose prose-lg max-w-none">
+                  <h3 className="text-xl font-bold text-[#191919] mb-4 flex items-center">
+                    Deskripsi Kasus
+                    <span className="ml-4 h-px flex-1 bg-[#AE8737]"></span>
+                  </h3>
+                  <div className="text-gray-700 leading-relaxed whitespace-pre-line">
+                    {selectedCase.detailedDescription}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
