@@ -1,29 +1,19 @@
-import { Link } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+
 import { Footer } from "./Footer";
-import whatsappLogo from "../../assets/whatsapp-logo-button-gold.png";
-import { ChevronDown } from "lucide-react";
+import { WhatsAppButton } from "./WhatsAppButton";
+
 import logo from "../../assets/mas-law-firm-logo-new-white.png";
+import whatsappIcon from "../../assets/whatsapp-logo-button-gold.png";
+
+import { ChevronDown, X, Menu } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 export function Layout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isTeamDropdownOpen, setIsTeamDropdownOpen] = useState(false);
-  const [isMobileTeamOpen, setIsMobileTeamOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const dropdownTimeoutRef = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const location = useLocation();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -33,107 +23,123 @@ export function Layout({ children }) {
     setIsSidebarOpen(false);
   };
 
-  const handleDropdownEnter = () => {
-    // Clear any existing timeout
-    if (dropdownTimeoutRef.current) {
-      clearTimeout(dropdownTimeoutRef.current);
-    }
-    setIsTeamDropdownOpen(true);
-  };
+  // Helper to check if a path is active
+  const isActive = (path) => location.pathname === path;
 
-  const handleDropdownLeave = () => {
-    // Add a delay before closing
-    dropdownTimeoutRef.current = setTimeout(() => {
-      setIsTeamDropdownOpen(false);
-    }, 200);
-  };
+  // Helper to check if any team path is active for parent styling
+  const isTeamActive =
+    location.pathname === "/tim-pengacara" ||
+    location.pathname === "/manajer-operasional" ||
+    location.pathname === "/staf-karyawan";
+
+  const isAuthenticated =
+    typeof window !== "undefined" &&
+    localStorage.getItem("isAuthenticated") === "true";
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Navigation */}
-      <nav className="bg-[#191919] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 text-white py-5 sticky top-0 z-50 shadow-sm border-b border-[#2a2a2a]">
+      <nav className="bg-[#191919] text-white py-5 sticky top-0 z-50 shadow-sm border-b border-[#2a2a2a]">
         <div className="container mx-auto px-10 flex justify-between items-center">
           <div className="flex items-center gap-3 mr-20 flex-shrink-0">
-            <img src={logo} alt="M.A.S Law Firm" className="h-17" />
+            <Link to="/">
+              <img src={logo} alt="M.A.S Law Firm" className="h-12" />
+            </Link>
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-6 lg:gap-8 text-sm ml-auto items-center font-medium">
+          <div className="hidden md:flex gap-8 text-sm ml-auto items-center font-medium">
             <Link
               to="/"
-              className="hover:text-[#AE8737] transition-colors duration-300"
+              className={`hover:text-[#AE8737] transition-colors duration-300 ${isActive("/") ? "text-[#AE8737]" : ""}`}
             >
-              Home
+              Beranda
             </Link>
+
             <Link
               to="/berita"
-              className="hover:text-[#AE8737] transition-colors duration-300"
+              className={`hover:text-[#AE8737] transition-colors duration-300 ${isActive("/berita") ? "text-[#AE8737]" : ""}`}
             >
-              News
+              Berita
             </Link>
+
             <Link
               to="/portofolio"
-              className="hover:text-[#AE8737] transition-colors duration-300"
+              className={`hover:text-[#AE8737] transition-colors duration-300 ${isActive("/portofolio") ? "text-[#AE8737]" : ""}`}
             >
-              Portfolio
+              Portofolio
             </Link>
 
             {/* Our Team Dropdown */}
             <div
-              className="relative"
-              onMouseEnter={handleDropdownEnter}
-              onMouseLeave={handleDropdownLeave}
+              className="relative group h-full flex items-center"
+              onMouseEnter={() => setIsTeamDropdownOpen(true)}
+              onMouseLeave={() => setIsTeamDropdownOpen(false)}
             >
-              <button className="hover:text-[#AE8737] transition-colors duration-300 flex items-center gap-1 text-sm">
-                Our Team
+              <button
+                className={`hover:text-[#AE8737] transition-colors duration-300 flex items-center gap-1 text-sm ${isTeamActive ? "text-[#AE8737]" : ""}`}
+              >
+                Tim Kami
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 ${
-                    isTeamDropdownOpen ? "rotate-180" : ""
-                  }`}
+                  className={`w-4 h-4 transition-transform duration-200 ${isTeamDropdownOpen ? "rotate-180" : ""}`}
                 />
               </button>
 
-              {/* Dropdown Menu with invisible bridge */}
-              {isTeamDropdownOpen && (
-                <div className="absolute top-full left-0 pt-2 z-50">
-                  {/* Invisible bridge to prevent gap */}
-                  <div className="h-2 w-full"></div>
-                  <div className="w-48 bg-[#2a2a2a] rounded-md shadow-xl overflow-hidden border border-[#3a3a3a]">
+              <AnimatePresence>
+                {isTeamDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-2 w-48 bg-[#191919] border border-[#AE8737]/30 shadow-lg rounded-md overflow-hidden py-2"
+                    style={{ translateX: "-10%" }}
+                  >
                     <Link
                       to="/tim-pengacara"
-                      className="block px-4 py-3 hover:bg-[#AE8737] hover:text-white transition-colors duration-200"
+                      className={`block px-4 py-2 hover:bg-[#AE8737]/10 hover:text-[#AE8737] transition-colors ${isActive("/tim-pengacara") ? "text-[#AE8737] bg-[#AE8737]/5" : ""}`}
                     >
-                      Lawyer
+                      Tim Pengacara
                     </Link>
                     <Link
-                      to="/asisten"
-                      className="block px-4 py-3 hover:bg-[#AE8737] hover:text-white transition-colors duration-200"
+                      to="/manajer-operasional"
+                      className={`block px-4 py-2 hover:bg-[#AE8737]/10 hover:text-[#AE8737] transition-colors ${isActive("/manajer-operasional") ? "text-[#AE8737] bg-[#AE8737]/5" : ""}`}
                     >
-                      Assistant
+                      Manajer Operasional
                     </Link>
                     <Link
-                      to="/staf-perusahaan"
-                      className="block px-4 py-3 hover:bg-[#AE8737] hover:text-white transition-colors duration-200"
+                      to="/staf-karyawan"
+                      className={`block px-4 py-2 hover:bg-[#AE8737]/10 hover:text-[#AE8737] transition-colors ${isActive("/staf-karyawan") ? "text-[#AE8737] bg-[#AE8737]/5" : ""}`}
                     >
-                      Company Staff
+                      Staf Karyawan
                     </Link>
-                  </div>
-                </div>
-              )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <Link
               to="/layanan-kami"
-              className="hover:text-[#AE8737] transition-colors duration-300 whitespace-nowrap"
+              className={`hover:text-[#AE8737] transition-colors duration-300 whitespace-nowrap ${isActive("/layanan-kami") ? "text-[#AE8737]" : ""}`}
             >
-              Our Services
+              Layanan Kami
             </Link>
+
             <Link
               to="/kontak"
-              className="hover:text-[#AE8737] transition-colors duration-300"
+              className={`hover:text-[#AE8737] transition-colors duration-300 ${isActive("/kontak") ? "text-[#AE8737]" : ""}`}
             >
-              Contact
+              Kontak
             </Link>
+
+            {isAuthenticated && (
+              <Link
+                to="/admin"
+                className="text-[#AE8737] border border-[#AE8737] px-4 py-1.5 rounded hover:bg-[#AE8737] hover:text-white transition-all duration-300"
+              >
+                Dashboard
+              </Link>
+            )}
           </div>
 
           {/* Hamburger Button (Mobile) */}
@@ -142,19 +148,11 @@ export function Layout({ children }) {
             className="md:hidden text-white p-2 rounded hover:bg-gray-700 transition-colors"
             aria-label="Toggle menu"
           >
-            <svg
-              className="w-7 h-7"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+            {isSidebarOpen ? (
+              <X className="w-7 h-7" />
+            ) : (
+              <Menu className="w-7 h-7" />
+            )}
           </button>
         </div>
       </nav>
@@ -169,19 +167,29 @@ export function Layout({ children }) {
 
       {/* SIDEBAR */}
       <aside
-        className={`fixed top-0 left-0 z-50 w-64 h-screen bg-gray-800 text-white transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 left-0 z-50 w-64 h-screen bg-[#191919] text-white border-r border-[#2a2a2a] transform transition-transform duration-300 ease-in-out md:hidden ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="p-5">
-          <h2 className="text-xl font-semibold mb-6">M.A.S. Law Firm</h2>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-semibold text-[#AE8737]">
+              M.A.S. Law Firm
+            </h2>
+            <button
+              onClick={closeSidebar}
+              className="text-gray-400 hover:text-white"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
 
           <ul className="space-y-4">
             <li>
               <Link
                 to="/"
                 onClick={closeSidebar}
-                className="block hover:text-[#AE8737] transition-colors"
+                className={`block hover:text-[#AE8737] transition-colors ${isActive("/") ? "text-[#AE8737]" : ""}`}
               >
                 Beranda
               </Link>
@@ -190,7 +198,7 @@ export function Layout({ children }) {
               <Link
                 to="/berita"
                 onClick={closeSidebar}
-                className="block hover:text-[#AE8737] transition-colors"
+                className={`block hover:text-[#AE8737] transition-colors ${isActive("/berita") ? "text-[#AE8737]" : ""}`}
               >
                 Berita
               </Link>
@@ -199,64 +207,53 @@ export function Layout({ children }) {
               <Link
                 to="/portofolio"
                 onClick={closeSidebar}
-                className="block hover:text-[#AE8737] transition-colors"
+                className={`block hover:text-[#AE8737] transition-colors ${isActive("/portofolio") ? "text-[#AE8737]" : ""}`}
               >
                 Portofolio
               </Link>
             </li>
 
-            {/* Mobile Team Dropdown */}
-            <li>
-              <button
-                onClick={() => setIsMobileTeamOpen(!isMobileTeamOpen)}
-                className="w-full text-left hover:text-[#AE8737] transition-colors duration-300 flex items-center justify-between"
-              >
+            {/* Mobile Dropdown Group */}
+            <li className="pt-2 pb-1 border-t border-[#2a2a2a]">
+              <span className="block text-[#AE8737] text-xs uppercase mb-2 font-semibold tracking-wider">
                 Tim Kami
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 ${
-                    isMobileTeamOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-
-              {isMobileTeamOpen && (
-                <ul className="mt-2 ml-4 space-y-2 border-l-2 border-[#AE8737] pl-4">
-                  <li>
-                    <Link
-                      to="/tim-pengacara"
-                      onClick={closeSidebar}
-                      className="block hover:text-[#AE8737] transition-colors text-sm"
-                    >
-                      Pengacara
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/asisten"
-                      onClick={closeSidebar}
-                      className="block hover:text-[#AE8737] transition-colors text-sm"
-                    >
-                      Asisten
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/staf-perusahaan"
-                      onClick={closeSidebar}
-                      className="block hover:text-[#AE8737] transition-colors text-sm"
-                    >
-                      Staf Perusahaan
-                    </Link>
-                  </li>
-                </ul>
-              )}
+              </span>
+              <ul className="pl-4 space-y-3 border-l border-[#2a2a2a] ml-1">
+                <li>
+                  <Link
+                    to="/tim-pengacara"
+                    onClick={closeSidebar}
+                    className={`block hover:text-[#AE8737] transition-colors ${isActive("/tim-pengacara") ? "text-[#AE8737]" : ""}`}
+                  >
+                    Tim Pengacara
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/manajer-operasional"
+                    onClick={closeSidebar}
+                    className={`block hover:text-[#AE8737] transition-colors ${isActive("/manajer-operasional") ? "text-[#AE8737]" : ""}`}
+                  >
+                    Manajer Operasional
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/staf-karyawan"
+                    onClick={closeSidebar}
+                    className={`block hover:text-[#AE8737] transition-colors ${isActive("/staf-karyawan") ? "text-[#AE8737]" : ""}`}
+                  >
+                    Staf Karyawan
+                  </Link>
+                </li>
+              </ul>
             </li>
 
-            <li>
+            <li className="pt-2 border-t border-[#2a2a2a]">
               <Link
                 to="/layanan-kami"
                 onClick={closeSidebar}
-                className="block hover:text-[#AE8737] transition-colors"
+                className={`block hover:text-[#AE8737] transition-colors ${isActive("/layanan-kami") ? "text-[#AE8737]" : ""}`}
               >
                 Layanan Kami
               </Link>
@@ -265,31 +262,35 @@ export function Layout({ children }) {
               <Link
                 to="/kontak"
                 onClick={closeSidebar}
-                className="block hover:text-[#AE8737] transition-colors"
+                className={`block hover:text-[#AE8737] transition-colors ${isActive("/kontak") ? "text-[#AE8737]" : ""}`}
               >
                 Kontak
               </Link>
             </li>
+
+            {isAuthenticated && (
+              <li className="pt-2 border-t border-[#2a2a2a] mt-2">
+                <Link
+                  to="/admin"
+                  onClick={closeSidebar}
+                  className="block text-[#AE8737] font-semibold"
+                >
+                  Admin Dashboard
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 bg-[#f8fafc]-">{children}</main>
+      <main className="flex-1 bg-[#f8fafc]">{children}</main>
 
       {/* Footer */}
       <Footer />
 
-      {/* WhatsApp Floating Button */}
-      <a
-        href="https://wa.me/"
-        target="_blank"
-        rel="noreferrer"
-        className="fixed bottom-6 right-6 z-50"
-        aria-label="WhatsApp"
-      >
-        <img src={whatsappLogo} alt="WhatsApp" className="w-14 h-14" />
-      </a>
+      {/* Floating WhatsApp Button */}
+      <WhatsAppButton />
     </div>
   );
 }

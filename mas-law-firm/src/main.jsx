@@ -14,10 +14,14 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Beranda />} />
-        <Route path="/layanan-kami" element={<LayananKami />} />
         <Route path="/berita" element={<Berita />} />
-        <Route path="/kontak" element={<Kontak />} />
         <Route path="/portofolio" element={<Portofolio />} />
+        <Route path="/tim-pengacara" element={<TimPengacara />} />
+        <Route path="/manajer-operasional" element={<ManajerOperasional />} />
+        <Route path="/staf-karyawan" element={<StafKaryawan />} />
+        <Route path="/layanan-kami" element={<LayananKami />} />
+        <Route path="/kontak" element={<Kontak />} />
+        <Route path="/sitemap" element={<Sitemap />} />
       </Routes>
     </Layout>
   );
@@ -30,6 +34,6 @@ if (rootEl) {
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </React.StrictMode>
+    </React.StrictMode>,
   );
 }
