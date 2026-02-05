@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Card } from '../components/ui/card';
-import { Plus, X } from 'lucide-react';
-import yeniImage from 'figma:asset/28bf93d291e104e4009070dd771458aee216b8e7.png';
-import triImage from 'figma:asset/816d49e7fb5f8e65418cfea5917431ffdf370e29.png';
-import citraImage from 'figma:asset/2e1920b08f935f4890ae8d91d8b15b92414b8c7f.png';
-import inzaghiImage from 'figma:asset/810705b5828d5a0aa9679db9c2b49b73af8af592.png';
-import elokImage from 'figma:asset/21555d8639a9d625a2c5345a7f831425704e8d2b.png';
-import ditoImage from 'figma:asset/d60885d026a71952dcca37d8fa15159b6a73fdb5.png';
-import zahraImage from 'figma:asset/94b205a30e2d8e7bcba023b4d6521b7e7128d9a3.png';
-import halimahImage from 'figma:asset/f7a5f7c875e9934d98dbaeee35f421d213dd43a8.png';
-import adityaImage from 'figma:asset/4a8d1f37d43ada59dd113c07255443a6fca54030.png';
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { Card } from "../components/ui/card";
+import { Plus, X } from "lucide-react";
+import yeniImage from "../../assets/foto-yeni.jpg";
+import triImage from "../../assets/foto-tri-utami.jpg";
+import citraImage from "../../assets/foto-citra.jpg";
+import inzaghiImage from "../../assets/foto-Inzaghi.jpg";
+import elokImage from "../../assets/foto-elok.jpg";
+import ditoImage from "../../assets/foto-dito.jpg";
+import zahraImage from "../../assets/foto-Zahra.jpg";
+import halimahImage from "../../assets/foto-dyan.jpg";
+import adityaImage from "../../assets/foto-adit.jpg";
 
 export function StafKaryawan() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -26,8 +26,8 @@ export function StafKaryawan() {
         "Manajemen Dokumen Hukum",
         "Korespondensi Legal",
         "Penjadwalan Agenda Sidang",
-        "Administrasi Kontrak & Izin"
-      ]
+        "Administrasi Kontrak & Izin",
+      ],
     },
     {
       id: 2,
@@ -38,8 +38,8 @@ export function StafKaryawan() {
         "Tata Kelola Administrasi Bisnis",
         "Alur Kerja Operasional Unit",
         "Manajemen Database Klien",
-        "Koordinasi Lintas Departemen"
-      ]
+        "Koordinasi Lintas Departemen",
+      ],
     },
     {
       id: 3,
@@ -52,8 +52,8 @@ export function StafKaryawan() {
         "mengkoordinasikan tugas anggota Business Development",
         "Menghubungkan Tim dengan divisi internal lain",
         "Memantau progress dan capaian kerja tim",
-        "Menyusun laporan perkembangan tim"
-      ]
+        "Menyusun laporan perkembangan tim",
+      ],
     },
     {
       id: 4,
@@ -66,8 +66,8 @@ export function StafKaryawan() {
         "Menganalisis peluang bisnis potential",
         "Mengumpulkan dan mengelola data pasar",
         "Mendukung insight dari hasil riset",
-        "Menyajikan hasil analisis secara ringkas"
-      ]
+        "Menyajikan hasil analisis secara ringkas",
+      ],
     },
     {
       id: 5,
@@ -80,8 +80,8 @@ export function StafKaryawan() {
         "mengelola data dan kontrak mitra",
         "Mengoordinasikan kebutuhan mitra",
         "Menyampaikan informasi ke tim internal",
-        "Menjaga hubungan kerja sama berkelanjutan"
-      ]
+        "Menjaga hubungan kerja sama berkelanjutan",
+      ],
     },
     {
       id: 6,
@@ -94,8 +94,8 @@ export function StafKaryawan() {
         "Mengembangkan konsep penawaran bisnis",
         "Menyesuaikan proposal dengan mitra",
         "Membuat materi presentasi dan pitching",
-        "Merevisi prosposal berdasarkan masukan"
-      ]
+        "Merevisi prosposal berdasarkan masukan",
+      ],
     },
     {
       id: 7,
@@ -111,8 +111,8 @@ export function StafKaryawan() {
         "Kolaborasi dengan lawyer untuk konten edukasi hukum",
         "Analisis performa konten dan media sosial",
         "Penyusunan rekomendasi strategi konten",
-        "Riset trend dan pembelajaran berkelanjutan media sosial"
-      ]
+        "Riset trend dan pembelajaran berkelanjutan media sosial",
+      ],
     },
     {
       id: 8,
@@ -128,8 +128,8 @@ export function StafKaryawan() {
         "Kolaborasi dengan lawyer untuk konten edukasi hukum",
         "Analisis performa konten dan media sosial",
         "Penyusunan rekomendasi strategi konten",
-        "Riset trend dan pembelajaran berkelanjutan media sosial"
-      ]
+        "Riset trend dan pembelajaran berkelanjutan media sosial",
+      ],
     },
     {
       id: 9,
@@ -141,9 +141,9 @@ export function StafKaryawan() {
         "Backend Development",
         "API Integration",
         "Database Management",
-        "Deployment & Maintenance"
-      ]
-    }
+        "Deployment & Maintenance",
+      ],
+    },
   ];
 
   return (
@@ -153,7 +153,8 @@ export function StafKaryawan() {
           <div className="inline-block w-12 h-1 bg-[#AE8737] mb-6"></div>
           <h2 className="mb-4 text-white">Staf & Karyawan</h2>
           <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-            Tim profesional yang berdedikasi mendukung operasional M.A.S Law Firm
+            Tim profesional yang berdedikasi mendukung operasional M.A.S Law
+            Firm
           </p>
         </div>
 
@@ -172,12 +173,12 @@ export function StafKaryawan() {
               <Card className="border-2 border-[#AE8737] shadow-lg overflow-hidden bg-[#1a1a1a] group h-full">
                 {/* Image Container with Overlay */}
                 <div className="relative aspect-[3/4] overflow-hidden bg-gray-900 flex items-center justify-center p-0">
-                  <img 
-                    src={employee.image} 
+                  <img
+                    src={employee.image}
                     alt={employee.name}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                  
+
                   {/* Hover Overlay */}
                   <motion.div
                     initial={{ opacity: 0 }}
@@ -188,14 +189,20 @@ export function StafKaryawan() {
                     <div className="w-16 h-16 rounded-full bg-[#AE8737] flex items-center justify-center mb-4">
                       <Plus className="w-8 h-8 text-white" strokeWidth={2.5} />
                     </div>
-                    <p className="text-white text-lg font-semibold">Lihat Profil</p>
+                    <p className="text-white text-lg font-semibold">
+                      Lihat Profil
+                    </p>
                   </motion.div>
                 </div>
 
                 {/* Card Info */}
                 <div className="p-6 text-center bg-[#1a1a1a] border-t-2 border-[#AE8737]">
-                  <h3 className="text-xl font-bold text-white mb-1">{employee.name}</h3>
-                  <p className="text-[#AE8737] font-semibold text-sm mb-1">{employee.title}</p>
+                  <h3 className="text-xl font-bold text-white mb-1">
+                    {employee.name}
+                  </h3>
+                  <p className="text-[#AE8737] font-semibold text-sm mb-1">
+                    {employee.title}
+                  </p>
                   <p className="text-gray-400 text-xs">{employee.specialty}</p>
                 </div>
               </Card>
@@ -214,7 +221,7 @@ export function StafKaryawan() {
             className="fixed inset-0 z-[100] flex items-center justify-center p-4"
           >
             {/* Backdrop */}
-            <div 
+            <div
               className="absolute inset-0 bg-[#191919]/90 backdrop-blur-sm"
               onClick={() => setSelectedEmployee(null)}
             />
@@ -238,8 +245,8 @@ export function StafKaryawan() {
 
               {/* Top: Full Width Image */}
               <div className="h-64 overflow-hidden relative shrink-0">
-                <img 
-                  src={selectedEmployee.image} 
+                <img
+                  src={selectedEmployee.image}
                   alt={selectedEmployee.name}
                   className="w-full h-full object-cover object-top"
                 />
@@ -248,8 +255,12 @@ export function StafKaryawan() {
 
               {/* Bottom: Content */}
               <div className="p-6 -mt-6 bg-white rounded-t-3xl relative z-10 flex flex-col items-center text-center">
-                <h2 className="text-2xl font-bold text-[#191919] mb-1">{selectedEmployee.name}</h2>
-                <p className="text-[#AE8737] font-semibold mb-6">{selectedEmployee.title}</p>
+                <h2 className="text-2xl font-bold text-[#191919] mb-1">
+                  {selectedEmployee.name}
+                </h2>
+                <p className="text-[#AE8737] font-semibold mb-6">
+                  {selectedEmployee.title}
+                </p>
 
                 {/* Role & Expertise Card */}
                 <div className="w-full bg-gray-100 rounded-xl p-6">
@@ -258,7 +269,10 @@ export function StafKaryawan() {
                   </h3>
                   <ul className="space-y-3">
                     {selectedEmployee.expertise.map((item, idx) => (
-                      <li key={idx} className="text-sm text-gray-700 font-medium border-b border-gray-200 last:border-0 pb-2 last:pb-0">
+                      <li
+                        key={idx}
+                        className="text-sm text-gray-700 font-medium border-b border-gray-200 last:border-0 pb-2 last:pb-0"
+                      >
                         {item}
                       </li>
                     ))}

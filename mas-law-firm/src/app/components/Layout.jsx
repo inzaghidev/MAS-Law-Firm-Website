@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom";
+
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 
@@ -284,7 +286,9 @@ export function Layout({ children }) {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 bg-[#f8fafc]">{children}</main>
+      <main className="flex-1 bg-[#f8fafc]">
+        <Outlet />
+      </main>
 
       {/* Footer */}
       <Footer />
