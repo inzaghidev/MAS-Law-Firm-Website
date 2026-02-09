@@ -13,7 +13,7 @@ export function Kontak() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 max-w-full lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {/* Phone Card */}
           <a href="tel:6289530407021" className="block h-full">
             <Card className="h-full bg-[#1a1a1a] border border-[#AE8737] hover:bg-[#AE8737]/10 hover:shadow-[0_0_15px_rgba(174,135,55,0.3)] transition-all duration-300 group">
@@ -75,75 +75,77 @@ export function Kontak() {
         </div>
 
         {/* Info Card (Address & Hours) */}
-        <div className="mt-12 max-w-3xl mx-auto">
-          <Card className="bg-[#1a1a1a] border border-[#AE8737] shadow-xl relative overflow-hidden">
-            {/* Subtle gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#AE8737]/5 to-transparent pointer-events-none"></div>
+        <div className="mt-12 max-w-full mx-auto">
+          <div className="mt-12 max-w-full mx-auto">
+            <Card className="bg-[#1a1a1a] border border-[#AE8737] shadow-xl relative overflow-hidden">
+              {/* Subtle gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#AE8737]/5 to-transparent pointer-events-none"></div>
 
-            <CardContent className="p-8 md:p-10 relative z-10">
-              <div className="grid md:grid-cols-2 gap-10">
-                {/* Address */}
-                <div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#AE8737]/10 flex items-center justify-center flex-shrink-0 mt-1">
-                      <MapPin className="w-5 h-5 text-[#AE8737] fill-[#AE8737]" />
-                    </div>
-                    <div>
-                      <h3 className="mb-3 text-white text-xl font-semibold">
-                        Alamat Kantor
-                      </h3>
-                      <a
-                        href="https://maps.app.goo.gl/U7Vhbspoe4EM16p5A"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-300 hover:text-[#AE8737] transition-colors leading-relaxed block"
-                      >
-                        Unit BC, Ruko Estrela,
-                        <br />
-                        Banjar Wijaya No.6, Cipete,
-                        <br />
-                        Kec. Pinang, Kota Tangerang, Banten
-                        <br />
-                        15142
-                      </a>
+              <CardContent className="p-8 md:p-12 relative z-10">
+                <div className="grid md:grid-cols-2 gap-16">
+                  {/* Address */}
+                  <div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-full bg-[#AE8737]/10 flex items-center justify-center flex-shrink-0 mt-1">
+                        <MapPin className="w-5 h-5 text-[#AE8737] fill-[#AE8737]" />
+                      </div>
+                      <div>
+                        <h3 className="mb-3 text-white text-xl font-semibold">
+                          Alamat Kantor
+                        </h3>
+                        <a
+                          href="https://maps.app.goo.gl/U7Vhbspoe4EM16p5A"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-300 hover:text-[#AE8737] transition-colors leading-relaxed block"
+                        >
+                          Unit BC, Ruko Estrela,
+                          <br />
+                          Banjar Wijaya No.6, Cipete,
+                          <br />
+                          Kec. Pinang, Kota Tangerang, Banten
+                          <br />
+                          15142
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Hours */}
-                <div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#AE8737]/10 flex items-center justify-center flex-shrink-0 mt-1">
-                      <Clock className="w-5 h-5 text-[#AE8737] fill-[#AE8737]" />
-                    </div>
-                    <div>
-                      <h3 className="mb-3 text-white text-xl font-semibold">
-                        Jam Operasional
-                      </h3>
-                      <div className="text-gray-300 leading-relaxed space-y-1">
-                        <div className="flex justify-between w-full max-w-[200px]">
-                          <span>Senin - Jumat</span>
-                          <span className="text-white font-medium">
-                            09.00 - 17.00
-                          </span>
-                        </div>
-                        <div className="flex justify-between w-full max-w-[200px]">
-                          <span>Sabtu</span>
-                          <span className="text-white font-medium">
-                            09.00 - 14.00
-                          </span>
-                        </div>
-                        <div className="flex justify-between w-full max-w-[200px] text-red-400">
-                          <span>Minggu</span>
-                          <span className="font-medium">Tutup</span>
+                  {/* Hours */}
+                  <div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-full bg-[#AE8737]/10 flex items-center justify-center flex-shrink-0 mt-1">
+                        <Clock className="w-5 h-5 text-[#AE8737] fill-[#AE8737]" />
+                      </div>
+                      <div>
+                        <h3 className="mb-3 text-white text-xl font-semibold">
+                          Jam Operasional
+                        </h3>
+                        <div className="text-gray-300 leading-relaxed space-y-4">
+                          <div className="flex justify-between w-full max-w-[420px] gap-x-8">
+                            <span>Senin - Jumat</span>
+                            <span className="text-white font-medium">
+                              09.00 - 17.00
+                            </span>
+                          </div>
+                          <div className="flex justify-between w-full max-w-[420px] gap-x-8">
+                            <span>Sabtu</span>
+                            <span className="text-white font-medium">
+                              09.00 - 14.00
+                            </span>
+                          </div>
+                          <div className="flex justify-between w-full max-w-[420px] gap-x-8 text-red-400">
+                            <span>Minggu</span>
+                            <span className="font-medium">Tutup</span>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
