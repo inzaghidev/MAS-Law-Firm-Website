@@ -32,7 +32,7 @@ export function TimPengacara() {
       bio: "Muhamad Amar adalah pendiri M.A.S Law Firm dengan pengalaman profesional di bidang hukum korporasi. Beliau telah menangani berbagai transaksi M&A bernilai tinggi dan memberikan konsultasi strategis kepada perusahaan multinasional.",
       email: "amar@lawyermas.com",
       phone: "+62 812-3456-7890",
-      linkedin: "https://www.linkedin.com/in/muhamad-amar",
+      linkedin: "https://www.linkedin.com/in/muhamadamar",
       experience: [
         {
           title: "Hukum Korporasi & M&A",
