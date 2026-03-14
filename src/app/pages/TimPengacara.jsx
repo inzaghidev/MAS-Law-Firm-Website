@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "motion/react";
 import { Card } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Plus, X, Mail, Phone, Linkedin } from "lucide-react";
-import pakAmarImage from "../../assets/foto-pak-amar-syeban.jpg";
-import anggiImage from "../../assets/foto-bu-anggi-khairina-hasibuan.jpg";
+import pakAmarImage from "/amar.jpeg";
+import anggiImage from "/anggi.jpeg";
 
 export function TimPengacara() {
   const [hoveredIndex, setHoveredIndex] = useState(null);

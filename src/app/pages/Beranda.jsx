@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Link } from "react-router-dom";
-import heroBackground from "../../assets/law-illustration-background.png";
+// import heroBackground from "../hero.jpg"; // File is in public folder
 import { VisiMisi } from "../components/VisiMisi";
 
 export function Beranda() {
@@ -11,7 +11,7 @@ export function Beranda() {
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroBackground})` }}
+          style={{ backgroundImage: `url(/hero.jpg)` }}
         ></div>
 
         {/* Dark Overlay (50% opacity) */}
@@ -33,7 +33,7 @@ export function Beranda() {
           <div className="flex flex-col items-center">
             <div className="flex flex-wrap gap-4 justify-center">
               <a
-                href="https://heyzine.com/flip-book/e301844c27.html"
+                href="https://heyzine.com/flip-book/e301844c27.html#page/2"
                 target="_blank"
                 rel="noopener noreferrer"
               >

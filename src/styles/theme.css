@@ -182,4 +182,25 @@
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
   }
+
+  /* Custom Animation for WhatsApp Button */
+  @keyframes pulse-subtle {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+  }
+
+  .animate-pulse-subtle {
+    animation: pulse-subtle 1s ease-in-out;
+  }
+
+  /* 3D Perspective for Flip Cards */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
 }

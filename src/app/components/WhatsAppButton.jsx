@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import whatsappIcon from "../../assets/whatsapp-logo-button-gold.png";
+import { useState, useEffect } from 'react';
+const whatsappIcon = '/whatsapp.png';
 
 export function WhatsAppButton() {
   const [isPulsing, setIsPulsing] = useState(false);
@@ -14,8 +14,7 @@ export function WhatsAppButton() {
     return () => clearInterval(interval);
   }, []);
 
-  const whatsappUrl =
-    "https://wa.me/6289530407021?text=Halo%20M.A.S%20Law%20Firm,%20saya%20ingin%20konsultasi%20gratis";
+  const whatsappUrl = 'https://wa.me/6289530407021?text=Halo%20M.A.S%20Law%20Firm,%20saya%20ingin%20konsultasi%20gratis';
 
   return (
     <a
@@ -43,12 +42,12 @@ export function WhatsAppButton() {
           transition-all duration-300
           hover:scale-110
           overflow-hidden
-          ${isPulsing ? "animate-pulse-subtle" : ""}
+          ${isPulsing ? 'animate-pulse-subtle' : ''}
         `}
       >
-        <img
-          src={whatsappIcon}
-          alt="WhatsApp"
+        <img 
+          src={whatsappIcon} 
+          alt="WhatsApp" 
           className="w-full h-full object-cover"
         />
       </div>
