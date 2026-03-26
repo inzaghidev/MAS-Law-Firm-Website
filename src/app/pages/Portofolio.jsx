@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
-const portfolioImg1 = '/pendirian%20pt%20pma.jpeg';
-const portfolioImg2 = '/klien%20internasional.jpeg';
-const portfolioImg3 = '/pendampingan%20pemeriksaan%20bpjs%20ketenagakerjaan.jpeg';
-const portfolioImg4 = '/mediator.jpeg';
+import portfolioImg1 from '/pendirian pt pma.jpeg';
+import portfolioImg2 from '/klien internasional.jpeg';
+import portfolioImg3 from '/pendampingan pemeriksaan bpjs ketenagakerjaan.jpeg';
+import portfolioImg4 from '/mediator.jpeg';
 
 export function Portofolio() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -60,12 +60,12 @@ export function Portofolio() {
   ];
 
   return (
-    <section className="py-24 bg-[#191919] text-white relative overflow-hidden">
+    <section className="py-24 bg-white text-[#191919] relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <div className="w-12 h-1 bg-[#AE8737] mx-auto mb-6"></div>
           <h2 className="text-3xl font-bold mb-4">Rekam Jejak & Portofolio</h2>
-          <p className="text-slate-300 max-w-2xl mx-auto">
+          <p className="text-slate-600 max-w-2xl mx-auto">
             Dipercaya oleh klien dari berbagai industri
           </p>
         </div>

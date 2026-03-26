@@ -9,12 +9,12 @@ import { Card, CardContent } from "../components/ui/card";
 
 export function Kontak() {
   return (
-    <section className="py-24 bg-[#191919]">
+      <section className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <div className="inline-block w-12 h-1 bg-[#AE8737] mb-6"></div>
           <h2 className="mb-4 text-[#AE8737]">Hubungi Kami</h2>
-          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             Kami siap membantu Anda dengan kebutuhan hukum
             bisnis Anda
           </p>
@@ -32,7 +32,7 @@ export function Kontak() {
                   <Phone className="w-8 h-8 text-[#AE8737] fill-[#AE8737]" />
                 </div>
                 <h3 className="mb-3 text-white text-xl font-semibold group-hover:text-[#AE8737] transition-colors">Telepon</h3>
-                <span className="text-gray-200 text-lg font-medium tracking-wide">
+                <span className="text-gray-200 hover:text-gray-800 text-lg font-medium tracking-wide break-all hover:text-gray-800 transition-colors duration-300">
                   +62 895 3040 7021
                 </span>
               </CardContent>
@@ -50,7 +50,7 @@ export function Kontak() {
                   <Mail className="w-8 h-8 text-[#AE8737] fill-[#AE8737]" />
                 </div>
                 <h3 className="mb-3 text-white text-xl font-semibold group-hover:text-[#AE8737] transition-colors">Email</h3>
-                <span className="text-gray-200 text-lg font-medium tracking-wide break-all">
+                <span className="text-gray-200 hover:text-gray-800 text-lg font-medium tracking-wide break-all hover:text-gray-800 transition-colors duration-300">
                   kantorpengacaramas@gmail.com
                 </span>
               </CardContent>
@@ -70,7 +70,7 @@ export function Kontak() {
                   <MessageCircle className="w-8 h-8 text-[#AE8737] fill-[#AE8737]" />
                 </div>
                 <h3 className="mb-3 text-white text-xl font-semibold group-hover:text-[#AE8737] transition-colors">WhatsApp</h3>
-                <span className="text-gray-200 text-lg font-medium tracking-wide">
+                <span className="text-gray-200 hover:text-gray-800 text-lg font-medium tracking-wide break-all hover:text-gray-800 transition-colors duration-300">
                   +62 895 3040 7021
                 </span>
               </CardContent>
@@ -146,6 +146,6 @@ export function Kontak() {
           </Card>
         </div>
       </div>
-    </section>
+      </section>
   );
 }

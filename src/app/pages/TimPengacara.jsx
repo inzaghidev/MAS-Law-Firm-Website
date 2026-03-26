@@ -172,63 +172,68 @@ export function TimPengacara() {
   ];
 
   return (
-    <section className="py-24 bg-[#191919] min-h-screen">
+    <section className="py-24 bg-white min-h-screen">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <div className="inline-block w-12 h-1 bg-[#AE8737] mb-6"></div>
-          <h2 className="mb-4 text-white">Tim Pengacara Kami</h2>
-          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+          <h2 className="mb-4 text-[#191919]">Tim Pengacara Kami</h2>
+          <p className="text-gray-700 max-w-2xl mx-auto text-lg">
             Profesional hukum berpengalaman yang berdedikasi melindungi
             kepentingan Anda
           </p>
         </div>
 
-        {/* Grid Gallery */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
+        {/* LAWYER LIST (Grid Gallery) */}
+        <div className="flex flex-col items-center gap-24 max-w-3xl mx-auto">
           {lawyers.map((lawyer, index) => (
             <motion.div
               key={lawyer.id}
               whileHover={{ y: -8 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.3 }}
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
               onClick={() => setSelectedLawyer(lawyer)}
-              className="cursor-pointer"
+              className="cursor-pointer text-center"
             >
-              <Card className="border-2 border-[#AE8737] shadow-lg overflow-hidden bg-[#1a1a1a] group h-full">
-                {/* Image Container with Overlay */}
-                <div className="relative aspect-[3/4] overflow-hidden bg-gray-900 flex items-center justify-center p-8">
-                  <img
-                    src={lawyer.image}
-                    alt={lawyer.name}
-                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                  />
-
-                  {/* Hover Overlay */}
+              <Card className="bg-transparent border-none shadow-none">
+                <div className="relative flex justify-center mb-6">
+                  <div className="w-[380px] h-[380px] rounded-full overflow-hidden border-[5px] border-[#AE8737] shadow-2xl">
+                    <img
+                      src={lawyer.image}
+                      alt={lawyer.name}
+                      className="w-full h-full object-cover object-[center_15%] scale-110"
+                    />
+                  </div>
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute inset-0 bg-[#191919]/90 flex flex-col items-center justify-center"
+                    className="absolute inset-0 flex items-center justify-center"
                   >
-                    <div className="w-16 h-16 rounded-full bg-[#AE8737] flex items-center justify-center mb-4">
-                      <Plus className="w-8 h-8 text-white" strokeWidth={2.5} />
+                    <div className="w-16 h-16 rounded-full bg-[#AE8737] flex items-center justify-center shadow-lg">
+                      <Plus className="w-8 h-8 text-[#191919]" />
                     </div>
-                    <p className="text-white text-lg font-semibold">
-                      View Profile
-                    </p>
                   </motion.div>
                 </div>
 
-                {/* Card Info */}
-                <div className="p-6 text-center bg-[#1a1a1a] border-t-2 border-[#AE8737]">
-                  <h3 className="text-2xl font-bold text-white mb-2">
-                    {lawyer.name}
-                  </h3>
-                  <p className="text-[#AE8737] font-semibold text-base mb-1">
-                    {lawyer.title}
-                  </p>
-                  <p className="text-gray-400 text-sm">{lawyer.specialty}</p>
+                <h3 className="text-2xl font-bold text-[#191919] mb-2">
+                  {lawyer.name}
+                </h3>
+                <p className="text-[#AE8737] font-semibold mb-1">
+                  {lawyer.title}
+                </p>
+                <p className="text-gray-400 text-sm mb-4">{lawyer.specialty}</p>
+
+                <div className="flex justify-center mt-4">
+                  <a
+                    href={lawyer.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-400 hover:border-[#AE8737] hover:bg-[#AE8737] transition"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Linkedin className="w-5 h-5 text-[#191919]" />
+                  </a>
                 </div>
               </Card>
             </motion.div>
@@ -236,7 +241,7 @@ export function TimPengacara() {
         </div>
       </div>
 
-      {/* Lawyer Detail Modal */}
+      {/* Lawyer Detail MODAL */}
       <AnimatePresence>
         {selectedLawyer && (
           <motion.div
