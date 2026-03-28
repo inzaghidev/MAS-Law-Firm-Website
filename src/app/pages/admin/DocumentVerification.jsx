@@ -185,7 +185,7 @@ export function DocumentVerification() {
 
         <Button
           onClick={() => setShowForm(true)}
-          className="bg-[#AE8737] text-white"
+          className="bg-[#AE8737] text-[#191919]"
         >
           <Plus className="w-4 h-4 mr-2" />
           Add Document

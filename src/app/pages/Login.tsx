@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Lock, Mail } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
-import { toast } from 'sonner';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Lock, Mail } from "lucide-react";
+import { supabase } from "../../lib/supabase";
+import { toast } from "sonner";
 
-const logo = '/placeholder.png';
+const logo = "/placeholder.png";
 
 export function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -30,19 +30,19 @@ export function Login() {
       }
 
       if (data.session) {
-        toast.success('Login successful');
-        navigate('/admin');
+        toast.success("Login successful");
+        navigate("/admin");
       }
     } catch (err) {
-      console.error('Login error:', err);
-      toast.error('An unexpected error occurred');
+      console.error("Login error:", err);
+      toast.error("An unexpected error occurred");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#191919] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-white flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg shadow-xl p-8">
         <div className="flex flex-col items-center mb-8">
           <img src={logo} alt="M.A.S Law Firm" className="h-16 mb-6" />
@@ -76,12 +76,12 @@ export function Login() {
             </div>
           </div>
 
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             disabled={loading}
             className="w-full bg-[#AE8737] hover:bg-[#8f6e2d] text-white py-2"
           >
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? "Logging in..." : "Login"}
           </Button>
         </form>
       </div>

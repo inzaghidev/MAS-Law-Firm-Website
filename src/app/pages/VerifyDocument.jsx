@@ -79,7 +79,7 @@ export function VerifyDocument() {
             />
             <button
               type="submit"
-              className="bg-[#AE8737] hover:bg-[#8f6e2d] text-white px-6 rounded-lg flex items-center gap-2 font-medium"
+              className="bg-[#AE8737] hover:bg-[#8f6e2d] text-[#191919] px-6 rounded-lg flex items-center gap-2 font-medium"
             >
               <Search className="w-4 h-4" />
               Verifikasi
