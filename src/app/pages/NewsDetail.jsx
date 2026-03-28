@@ -1,7 +1,9 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { supabase } from '../../lib/supabase';
-import { Calendar } from 'lucide-react';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
+import { Calendar, Clock } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export function NewsDetail() {
   const { slug } = useParams();

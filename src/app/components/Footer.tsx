@@ -111,6 +111,21 @@ export function Footer() {
                 Cek keaslian dokumen resmi yang diterbitkan oleh
                 M.A.S Law Firm secara online.
               </p>
+
+              {/* Lynk */}
+              <a
+                href="https://lynk.id/maslawfirm"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 hover:text-white"
+              >
+                <MessageCircle className="w-5 h-5 text-[#AE8737]" />
+                <span>Konsultasi & Layanan Cepat</span>
+              </a>
+
+              <p className="text-xs text-slate-500">
+                Akses seluruh layanan hukum dalam satu halaman.
+              </p>
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ export function Kontak() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <div className="inline-block w-12 h-1 bg-[#AE8737] mb-6"></div>
-          <h2 className="mb-4 text-[#AE8737]">Hubungi Kami</h2>
+          <h2 className="mb-4 text-[#AE8737]">Konsultasi Gratis Sekarang (Respon Cepat)!</h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             Kami siap membantu Anda dengan kebutuhan hukum
             bisnis Anda
