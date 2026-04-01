@@ -67,12 +67,15 @@ export function ManajerOperasional() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: hoveredIndex === 0 ? 1 : 0 }}
                   transition={{ duration: 0.3 }}
-                  className="absolute inset-0 bg-[#191919]/90 flex flex-col items-center justify-center"
+                  className="absolute inset-0 bg-white/90 flex flex-col items-center justify-center"
                 >
                   <div className="w-16 h-16 rounded-full bg-[#AE8737] flex items-center justify-center mb-4">
-                    <Plus className="w-8 h-8 text-white" strokeWidth={2.5} />
+                    <Plus
+                      className="w-8 h-8 text-[#191919]"
+                      strokeWidth={2.5}
+                    />
                   </div>
-                  <p className="text-white text-lg font-semibold">
+                  <p className="text-[#191919] text-lg font-semibold">
                     Lihat Profil
                   </p>
                 </motion.div>

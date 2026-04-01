@@ -183,7 +183,7 @@ export function StafKaryawan() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute inset-0 bg-[#191919]/90 flex flex-col items-center justify-center"
+                    className="absolute inset-0 bg-white/90 flex flex-col items-center justify-center"
                   >
                     <div className="w-16 h-16 rounded-full bg-[#AE8737] flex items-center justify-center mb-4">
                       <Plus className="w-8 h-8 text-white" strokeWidth={2.5} />
