@@ -116,7 +116,7 @@ export function LayananKami() {
                 <a
                   href="https://wa.me/628123456789"
                   target="_blank"
-                  className="flex-1 text-center bg-[#AE8737] hover:bg-[#8f6e2d] text-white py-3 rounded-lg font-medium transition"
+                  className="flex-1 text-center bg-[#AE8737] hover:bg-[#8f6e2d] text-[#191919] hover:text-white py-3 rounded-lg font-medium transition"
                 >
                   Konsultasi Sekarang
                 </a>
