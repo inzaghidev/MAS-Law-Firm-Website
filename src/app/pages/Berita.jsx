@@ -13,6 +13,7 @@ export function Berita() {
         .from('news')
         .select('*')
         .eq('status', 'Published')
+        .lte('date', new Date().toISOString())
         .order('date', { ascending: false });
 
       if (error) {
