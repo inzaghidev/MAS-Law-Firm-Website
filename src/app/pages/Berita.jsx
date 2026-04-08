@@ -31,7 +31,7 @@ export function Berita() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <div className="inline-block w-12 h-1 bg-[#AE8737] mb-6"></div>
-          <h2 className="mb-4 text-[#191919]">Berita & Insight Hukum</h2>
+          <h2 className="mb-4 text-[#191919] text-2xl font-bold">Berita & Insight Hukum</h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-lg">
             Tetap terinformasi dengan perkembangan terbaru dalam hukum korporasi dan merek dagang
           </p>

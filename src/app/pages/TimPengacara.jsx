@@ -4,7 +4,7 @@ import { Card } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Plus, X, Mail, Phone, Linkedin } from "lucide-react";
 import pakAmarImage from "/amar.jpeg";
-import anggiImage from "/anggi.jpeg";
+import anggiImage from "/anggi.jpg";
 
 export function TimPengacara() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
