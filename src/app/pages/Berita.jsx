@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 
 export function Berita() {
   const [news, setNews] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -26,6 +28,14 @@ export function Berita() {
     fetchNews();
   }, []);
 
+  // =========================
+  // FILTER SEARCH
+  // =========================
+  const filteredNews = news.filter((article) =>
+    article.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+
   return (
     <section className="py-24 bg-white">
       <div className="container mx-auto px-6">
@@ -37,8 +47,22 @@ export function Berita() {
           </p>
         </div>
 
+        {/* SEARCH */}
+        <div className="flex justify-center mb-10">
+          <input
+            type="text"
+            placeholder="Cari artikel..."
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setCurrentIndex(0);
+            }}
+            className="w-full max-w-md px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#AE8737]"
+          />
+        </div>
+
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {news.map((article) => (
+          {filteredNews.map((article) => (
             <Card
               key={article.id}
               className="border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group"
