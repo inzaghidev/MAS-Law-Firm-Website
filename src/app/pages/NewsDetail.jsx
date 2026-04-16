@@ -83,7 +83,7 @@ export function NewsDetail() {
         )}
 
         {/* TITLE */}
-        <h1 className="text-4xl md:text-5xl font-bold text-[#191919] mb-6">
+        <h1 className="text-4xl md:text-5xl font-bold text-[#191919] mb-6 leading-tight">
           {article.title}
         </h1>
 
@@ -149,7 +149,7 @@ export function NewsDetail() {
           </div>
         </div>
 
-      </div> {/* ✅ INI YANG KURANG TADI */}
+      </div>
 
       {/* SCROLL BUTTON */}
       <button

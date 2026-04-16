@@ -18,7 +18,8 @@ import {
 import { Card, CardContent } from "../../components/ui/card";
 import { Button } from "../../components/ui/button";
 
-export function ManageNews({ articles, setArticles }) {
+export function ManageNews() {
+  const [articles, setArticles] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editingArticle, setEditingArticle] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -39,7 +40,7 @@ export function ManageNews({ articles, setArticles }) {
       .eq("status", "Scheduled")
       .lte("date", now);
 
-    if (!scheduledError && scheduledData.length > 0) {
+    if (!scheduledError && scheduledData && scheduledData.length > 0) {
       const ids = scheduledData.map((item) => item.id);
 
       await supabase.from("news").update({ status: "Published" }).in("id", ids);
