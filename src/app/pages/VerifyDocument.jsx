@@ -24,6 +24,14 @@ export function VerifyDocument() {
     }
   }, []);
 
+  const getFileName = (url) => {
+    try {
+      return decodeURIComponent(url.split("/").pop());
+    } catch {
+      return "Dokumen";
+    }
+  };
+
   const verifyDocument = async (docCode) => {
     setLoading(true);
     setResult(null);
@@ -194,8 +202,7 @@ export function VerifyDocument() {
                               : `documents/${fileName}`;
 
                             // 🔥 FIX 3: ambil URL
-                            const { data } = supabase
-                              .storage
+                            const { data } = supabase.storage
                               .from("document-files")
                               .getPublicUrl(filePath);
 
@@ -203,10 +210,17 @@ export function VerifyDocument() {
 
                             if (!fileUrl) return null;
 
-                            const isImage = /\.(jpg|jpeg|png|webp)$/i.test(fileName);
+                            const isImage = /\.(jpg|jpeg|png|webp)$/i.test(
+                              fileName,
+                            );
 
                             return isImage ? (
-                              <a key={index} href={fileUrl} target="_blank" rel="noreferrer">
+                              <a
+                                key={index}
+                                href={fileUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
                                 <img
                                   src={fileUrl}
                                   alt={`file-${index}`}
@@ -214,8 +228,15 @@ export function VerifyDocument() {
                                 />
                               </a>
                             ) : (
-                              <a key={index} href={fileUrl} target="_blank" download rel="noreferrer">
-                                Download File {index + 1}
+                              <a
+                                key={index}
+                                href={fileUrl}
+                                target="_blank"
+                                download
+                                rel="noreferrer"
+                                className="text-[#AE8737] hover:underline text-sm"
+                              >
+                                📄 {getFileName(fileUrl)}
                               </a>
                             );
                           })}
@@ -224,7 +245,6 @@ export function VerifyDocument() {
                     )
                   );
                 })()}
-
               </div>
 
               {/* QR */}
