@@ -64,10 +64,12 @@
     "vaul": "1.1.2"
   },
   "devDependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.60.2",
     "@tailwindcss/vite": "4.1.12",
     "@vitejs/plugin-react": "4.7.0",
+    "lightningcss-win32-x64-msvc": "^1.32.0",
     "tailwindcss": "4.1.12",
-    "vite": "6.3.5"
+    "vite": "^6.4.2"
   },
   "peerDependencies": {
     "react": "18.3.1",
