@@ -83,7 +83,7 @@ export function ManajerOperasional() {
 
               {/* Card Info */}
               <div className="p-6 text-center bg-[#1a1a1a] border-t-2 border-[#AE8737]">
-                <h3 className="text-2xl font-bold text-white mb-2">
+                <h3 className="text-2xl font-bold text-[#191919] text-white mb-2">
                   {manager.name}
                 </h3>
                 <p className="text-[#AE8737] font-semibold text-base mb-1">

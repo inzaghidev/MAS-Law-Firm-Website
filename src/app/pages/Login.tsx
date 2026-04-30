@@ -1,16 +1,15 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "../components/ui/button";
-import { Input } from "../components/ui/input";
-import { Lock, Mail } from "lucide-react";
-import { supabase } from "../../lib/supabase";
-import { toast } from "sonner";
-
-const logo = "/placeholder.png";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import { Lock, Mail } from 'lucide-react';
+import logo from '/placeholder.png';
+import { supabase } from '../../lib/supabase';
+import { toast } from 'sonner';
 
 export function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -30,12 +29,12 @@ export function Login() {
       }
 
       if (data.session) {
-        toast.success("Login successful");
-        navigate("/admin");
+        toast.success('Login successful');
+        navigate('/admin');
       }
     } catch (err) {
-      console.error("Login error:", err);
-      toast.error("An unexpected error occurred");
+      console.error('Login error:', err);
+      toast.error('An unexpected error occurred');
     } finally {
       setLoading(false);
     }

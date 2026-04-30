@@ -8,16 +8,18 @@ import {
 import { Button } from "../components/ui/button";
 import { Link } from "react-router-dom";
 // import heroBackground from "../hero.jpg"; // File is in public folder
-import { VisiMisi } from "../components/VisiMisi";
+import VisiMisi from "../components/VisiMisi";
 
 export function Beranda() {
+
   const articles = [
     {
       title: "Bukan Sekadar Gelar: Mengapa Penguasaan Hard Skill di Luar Kampus Semakin Krusial",
       slug: "bukan-sekadar-gelar-mengapa-penguasaan-hard-skill-di-luar-kampus-semakin-krusial",
     },
   ];
-
+  
+  
   return (
     <>
       <section className="relative bg-white py-28 md:py-36">

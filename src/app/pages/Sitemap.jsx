@@ -75,7 +75,7 @@ export function Sitemap() {
           {/* View XML Sitemap Button */}
           <button
             onClick={handleViewXMLSitemap}
-            className="inline-flex items-center gap-2 bg-[#AE8737] text-white px-8 py-3 rounded-lg hover:bg-[#8f6d2d] transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center gap-2 bg-[#AE8737] text-[#191919] px-8 py-3 rounded-lg hover:bg-[#8f6d2d] transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             <FileText className="w-5 h-5" />
             Lihat XML Sitemap
@@ -94,7 +94,7 @@ export function Sitemap() {
               >
                 <div className="flex items-start gap-4">
                   <div className="p-3 bg-[#AE8737]/10 rounded-lg group-hover:bg-[#AE8737] transition-colors duration-300">
-                    <Icon className="w-6 h-6 text-[#AE8737] group-hover:text-white transition-colors duration-300" />
+                    <Icon className="w-6 h-6 text-[#AE8737] group-hover:text-[#191919] transition-colors duration-300" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl mb-2 text-[#191919] group-hover:text-[#AE8737] transition-colors duration-300">

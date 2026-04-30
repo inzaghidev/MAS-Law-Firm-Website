@@ -1,8 +1,8 @@
 import { motion } from 'motion/react';
-const whatsappIcon = '/whatsapp.png';
+import whatsappIcon from '/whatsapp.png';
 
 export function FloatingWhatsApp() {
-  const phoneNumber = "6289530407021";
+  const phoneNumber = "6288295359866";
   const message = encodeURIComponent("Halo MAS Law Firm, saya ingin berkonsultasi mengenai...");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 

@@ -329,23 +329,21 @@ export function DocumentVerification() {
                   </td>
 
                   <td>
-                    <div className="flex flex-wrap gap-2">
-                      {doc.files?.map((file, i) => {
-                        const fileName = file.split("/").pop() || file;
-                        return (
-                          <a
-                            key={i}
-                            href={file}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center text-blue-600 text-sm border border-gray-300 rounded-md px-2 py-1 hover:bg-gray-50 transition-colors"
-                          >
-                            <Eye className="w-4 h-4 mr-1.5" />
-                            {fileName}
-                          </a>
-                        );
-                      })}
-                    </div>
+                    {doc.files?.map((file, i) => {
+                      const fileName = file.split("/").pop() || file;
+                      return (
+                        <a
+                          key={i}
+                          href={file}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-blue-600 text-sm border border-gray-300 rounded-md px-2 py-1 hover:bg-gray-50 transition-colors"
+                        >
+                          <Eye className="w-4 inline mr-1" />
+                          {fileName}
+                        </a>
+                      );
+                    })}
                   </td>
 
                   <td>

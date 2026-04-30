@@ -90,7 +90,7 @@ export function DashboardOverview({ articles = [], documents = [] }) {
       {/* HEADER */}
       <div>
         <h2 className="text-2xl font-bold text-[#191919]">
-          {greeting}, Admin 🤗
+          {greeting}, Admin 🫶🏻
         </h2>
         <p className="text-slate-500 text-sm">{today}</p>
       </div>

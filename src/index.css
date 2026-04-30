@@ -1,0 +1,139 @@
+/* ================= ADMIN THEME ROMANCE ================= */
+body.admin-theme {
+  font-family: 'Poppins', sans-serif;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 182, 193, 0.5), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(255, 105, 180, 0.5), transparent 40%),
+    linear-gradient(135deg, #ffe4ec, #ffd6e7);
+
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* 💖 LOVE PATTERN OVERLAY */
+body.admin-theme::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/hearts.png");
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 💎 CARD GLASS EFFECT */
+body.admin-theme .shadow-sm,
+body.admin-theme .shadow-md,
+body.admin-theme .border {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 192, 203, 0.4);
+  box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+}
+
+/* 🌸 SIDEBAR */
+body.admin-theme aside {
+  background: linear-gradient(180deg, #ff6ec7, #ffb6e6) !important;
+  color: white;
+  box-shadow: 4px 0 20px rgba(255, 105, 180, 0.3);
+}
+
+/* ✨ SIDEBAR TITLE */
+body.admin-theme aside h1 {
+  color: white;
+  letter-spacing: 1px;
+}
+
+/* 💗 ACTIVE MENU */
+body.admin-theme .bg-\[\#AE8737\] {
+  background: linear-gradient(135deg, #ff4da6, #ff85c1) !important;
+  color: white;
+  box-shadow: 0 0 12px rgba(255, 105, 180, 0.6);
+}
+
+/* 💫 BUTTON STYLE */
+body.admin-theme button {
+  transition: all 0.25s ease;
+}
+
+/* 💥 BUTTON HOVER */
+body.admin-theme button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+}
+
+/* 💖 TITLE GLOW */
+body.admin-theme h1,
+body.admin-theme h2,
+body.admin-theme h3 {
+  color: #ff4da6;
+  text-shadow: 0 0 6px rgba(255, 105, 180, 0.3);
+}
+
+/* 🌈 INPUT STYLE */
+body.admin-theme input,
+body.admin-theme textarea,
+body.admin-theme select {
+  border-radius: 10px;
+  border: 1px solid #ffc0cb;
+}
+
+body.admin-theme input:focus,
+body.admin-theme textarea:focus,
+body.admin-theme select:focus {
+  outline: none;
+  border-color: #ff4da6;
+  box-shadow: 0 0 8px rgba(255, 105, 180, 0.4);
+}
+
+/* ✨ SCROLLBAR */
+body.admin-theme ::-webkit-scrollbar {
+  width: 8px;
+}
+
+body.admin-theme ::-webkit-scrollbar-thumb {
+  background: linear-gradient(#ff6ec7, #ffb6e6);
+  border-radius: 10px;
+}
+
+/* 💘 LOVE RAIN (INI YANG BARU) */
+.love-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.love-rain span {
+  position: absolute;
+  top: -10%;
+  font-size: 14px;
+  animation: fall 8s linear infinite;
+  opacity: 0.6;
+}
+
+/* posisi random */
+.love-rain span:nth-child(1) { left: 5%; animation-delay: 0s; }
+.love-rain span:nth-child(2) { left: 15%; animation-delay: 2s; }
+.love-rain span:nth-child(3) { left: 25%; animation-delay: 4s; }
+.love-rain span:nth-child(4) { left: 35%; animation-delay: 1s; }
+.love-rain span:nth-child(5) { left: 45%; animation-delay: 3s; }
+.love-rain span:nth-child(6) { left: 55%; animation-delay: 5s; }
+.love-rain span:nth-child(7) { left: 65%; animation-delay: 2s; }
+.love-rain span:nth-child(8) { left: 75%; animation-delay: 6s; }
+.love-rain span:nth-child(9) { left: 85%; animation-delay: 1s; }
+.love-rain span:nth-child(10){ left: 95%; animation-delay: 4s; }
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}

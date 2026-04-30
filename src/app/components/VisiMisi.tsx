@@ -1,7 +1,7 @@
 import { Compass, Gavel } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export function VisiMisi() {
+export default function VisiMisi() {
   const visiItems = [
     "Menjadi partner terpercaya bagi klien dalam perlindungan dan pengembangan hukum.",
     "Memberikan pelayanan hukum sepenuh hati yang profesional, transparan, dan berintegritas.",

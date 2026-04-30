@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Footer } from "./Footer";
 import logo from "/logo.png";
@@ -8,11 +8,7 @@ import { supabase } from "../../lib/supabase";
 
 import { FloatingWhatsApp } from "./FloatingWhatsApp";
 
-export function Layout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isTeamDropdownOpen, setIsTeamDropdownOpen] =
     useState(false);
@@ -301,7 +297,7 @@ export function Layout({
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 bg-[#f8fafc]">{children}</main>
+      <main className="flex-1 bg-[#f8fafc]"><Outlet /></main>
 
       {/* Footer */}
       <Footer />

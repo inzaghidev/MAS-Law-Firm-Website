@@ -2,15 +2,15 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Card } from '../components/ui/card';
 import { Plus, X } from 'lucide-react';
-const yeniImage = '/yeni.webp';
-const triImage = '/tri.jpeg';
-const citraImage = '/citra.png';
-const inzaghiImage = '/inzaghi.png';
-const elokImage = '/elok.JPG';
-const ditoImage = '/dito.jpeg';
-const zahraImage = '/zahra.png';
-const halimahImage = '/halimah.png';
-const adityaImage = '/adit.png';
+import yeniImage from '/yeni.webp';
+import triImage from '/tri.jpeg';
+import citraImage from '/citra.png';
+import inzaghiImage from '/inzaghi.png';
+import elokImage from '/elok.JPG';
+import ditoImage from '/dito.jpeg';
+import zahraImage from '/zahra.png';
+import halimahImage from '/halimah.png';
+import adityaImage from '/adit.png';
 
 export function StafKaryawan() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -186,15 +186,15 @@ export function StafKaryawan() {
                     className="absolute inset-0 bg-white/90 flex flex-col items-center justify-center"
                   >
                     <div className="w-16 h-16 rounded-full bg-[#AE8737] flex items-center justify-center mb-4">
-                      <Plus className="w-8 h-8 text-white" strokeWidth={2.5} />
+                      <Plus className="w-8 h-8 text-[#191919]" strokeWidth={2.5} />
                     </div>
-                    <p className="text-white text-lg font-semibold">Lihat Profil</p>
+                    <p className="text-[#191919] text-lg font-semibold">Lihat Profil</p>
                   </motion.div>
                 </div>
 
                 {/* Card Info */}
                 <div className="p-6 text-center bg-[#1a1a1a] border-t-2 border-[#AE8737]">
-                  <h3 className="text-xl font-bold text-white mb-1">{employee.name}</h3>
+                  <h3 className="text-xl font-bold text-[#191919] text-white mb-1">{employee.name}</h3>
                   <p className="text-[#AE8737] font-semibold text-sm mb-1">{employee.title}</p>
                   <p className="text-gray-400 text-xs">{employee.specialty}</p>
                 </div>
@@ -215,7 +215,7 @@ export function StafKaryawan() {
           >
             {/* Backdrop */}
             <div 
-              className="absolute inset-0 bg-[#191919]/90 backdrop-blur-sm"
+              className="absolute inset-0 bg-white/90 backdrop-blur-sm"
               onClick={() => setSelectedEmployee(null)}
             />
 
@@ -231,7 +231,7 @@ export function StafKaryawan() {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedEmployee(null)}
-                className="absolute top-4 right-4 z-50 p-2 bg-black/40 hover:bg-black/60 rounded-full transition-colors text-white shadow-md"
+                className="absolute top-4 right-4 z-50 p-2 bg-black/40 hover:bg-black/60 rounded-full transition-colors text-[#191919] shadow-md"
               >
                 <X className="w-5 h-5" />
               </button>
