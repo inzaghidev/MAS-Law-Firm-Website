@@ -1,7 +1,13 @@
 import { useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { supabase } from "../../lib/supabase";
-import { Calendar, Clock, ArrowUp } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  ArrowUp,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -9,10 +15,12 @@ export function NewsDetail() {
   const { slug } = useParams();
 
   const [article, setArticle] = useState(null);
-  const [relatedNews, setRelatedNews] = useState([]); // ✅ pindah ke atas
+  const [recommendedNews, setRecommendedNews] = useState([]);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // SCROLL BUTTON
+  const sliderRef = useRef(null);
+
+  // ================= SCROLL TOP =================
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
@@ -26,34 +34,46 @@ export function NewsDetail() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // FETCH ARTICLE
+  // ================= FETCH ARTICLE =================
   useEffect(() => {
     const fetchArticle = async () => {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from("news")
         .select("*")
         .eq("slug", slug)
         .single();
 
-      if (!error && data) {
+      if (data) {
         setArticle(data);
-        fetchRelated(data);
+        fetchRecommended(data.id);
       }
     };
 
     fetchArticle();
   }, [slug]);
 
-  // FETCH RELATED
-  const fetchRelated = async (currentArticle) => {
-    const { data, error } = await supabase
+  // ================= FETCH ALL OTHER ARTICLES =================
+  const fetchRecommended = async (currentId) => {
+    const { data } = await supabase
       .from("news")
       .select("*")
-      .neq("id", currentArticle.id)
+      .neq("id", currentId)
       .eq("status", "Published")
-      .limit(3);
+      .order("date", { ascending: false });
 
-    if (!error) setRelatedNews(data || []);
+    setRecommendedNews(data || []);
+  };
+
+  // ================= SLIDER =================
+  const scrollSlider = (direction) => {
+    if (!sliderRef.current) return;
+
+    const amount = 320;
+
+    sliderRef.current.scrollBy({
+      left: direction === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
   };
 
   if (!article) {
@@ -70,7 +90,6 @@ export function NewsDetail() {
 
   return (
     <section className="bg-white py-20">
-
       <div className="max-w-3xl mx-auto px-6">
 
         {/* CATEGORY */}
@@ -88,7 +107,7 @@ export function NewsDetail() {
         </h1>
 
         {/* META */}
-        <div className="flex gap-6 text-sm text-slate-500 mb-10">
+        <div className="flex flex-wrap gap-6 text-sm text-slate-500 mb-10">
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4 text-[#AE8737]" />
             {new Date(article.date).toLocaleDateString("id-ID")}
@@ -102,7 +121,7 @@ export function NewsDetail() {
 
         {/* IMAGE */}
         {imageSrc && (
-          <div className="mb-12 rounded-xl overflow-hidden">
+          <div className="mb-12 rounded-xl overflow-hidden shadow">
             <img
               src={imageSrc}
               alt={article.title}
@@ -112,55 +131,81 @@ export function NewsDetail() {
         )}
 
         {/* CONTENT */}
-        <article className="text-lg text-slate-700">
+        <article className="text-lg text-slate-700 leading-relaxed">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {article.content}
           </ReactMarkdown>
         </article>
 
-        {/* RELATED NEWS */}
-        <div className="mt-20">
-          <h3 className="text-2xl font-bold mb-6 text-[#191919]">
-            Artikel Lainnya
-          </h3>
+      </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {relatedNews.map((item) => (
+      {/* RECOMMENDED ARTICLES */}
+      {recommendedNews.length > 0 && (
+        <div className="mt-24 max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-2xl font-bold text-[#191919]">
+              Artikel yang Mungkin Kamu Sukai
+            </h3>
+
+            <div className="flex gap-2">
+              <button
+                onClick={() => scrollSlider("left")}
+                className="w-10 h-10 rounded-full border hover:bg-slate-100 flex items-center justify-center"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              <button
+                onClick={() => scrollSlider("right")}
+                className="w-10 h-10 rounded-full border hover:bg-slate-100 flex items-center justify-center"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          <div
+            ref={sliderRef}
+            className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-2"
+          >
+            {recommendedNews.map((item) => (
               <Link
                 key={item.id}
                 to={`/news/${item.slug}`}
-                className="group border rounded-xl overflow-hidden hover:shadow-lg"
+                className="min-w-[300px] max-w-[300px] flex-shrink-0 group border rounded-2xl overflow-hidden hover:shadow-xl transition"
               >
-                <div className="h-40 overflow-hidden">
+                <div className="h-44 overflow-hidden">
                   <img
                     src={item.image_url}
                     alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105"
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                   />
                 </div>
 
                 <div className="p-4">
-                  <h4 className="text-sm font-semibold">
+                  <h4 className="font-semibold text-[#191919] line-clamp-2 group-hover:text-[#AE8737] transition">
                     {item.title}
                   </h4>
+
+                  <p className="text-sm text-slate-500 mt-2">
+                    {new Date(item.date).toLocaleDateString("id-ID")}
+                  </p>
                 </div>
               </Link>
             ))}
           </div>
         </div>
+      )}
 
-      </div>
-
-      {/* SCROLL BUTTON */}
+      {/* SCROLL TO TOP */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 bg-[#AE8737] text-white p-3 rounded-full ${
-          showScrollTop ? "opacity-100" : "opacity-0"
+        className={`fixed bottom-8 right-8 bg-[#AE8737] text-white p-3 rounded-full shadow-lg transition ${
+          showScrollTop ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
-        <ArrowUp />
+        <ArrowUp className="w-5 h-5" />
       </button>
-
     </section>
   );
 }
