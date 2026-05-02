@@ -1,7 +1,13 @@
 import { useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { supabase } from "../../lib/supabase";
-import { Calendar, Clock, ArrowUp } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  ArrowUp,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -9,10 +15,12 @@ export function NewsDetail() {
   const { slug } = useParams();
 
   const [article, setArticle] = useState(null);
-  const [relatedNews, setRelatedNews] = useState([]);
+  const [recommendedNews, setRecommendedNews] = useState([]);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // ================= SCROLL =================
+  const sliderRef = useRef(null);
+
+  // ================= SCROLL TOP =================
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
@@ -29,34 +37,45 @@ export function NewsDetail() {
   // ================= FETCH ARTICLE =================
   useEffect(() => {
     const fetchArticle = async () => {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from("news")
         .select("*")
         .eq("slug", slug)
         .single();
 
-      if (!error && data) {
+      if (data) {
         setArticle(data);
-        fetchRelated(data);
+        fetchRecommended(data.id);
       }
     };
 
     fetchArticle();
   }, [slug]);
 
-  // ================= FETCH RELATED =================
-  const fetchRelated = async (currentArticle) => {
-    const { data, error } = await supabase
+  // ================= FETCH ALL OTHER ARTICLES =================
+  const fetchRecommended = async (currentId) => {
+    const { data } = await supabase
       .from("news")
       .select("*")
-      .neq("id", currentArticle.id)
+      .neq("id", currentId)
       .eq("status", "Published")
-      .limit(3);
+      .order("date", { ascending: false });
 
-    if (!error) setRelatedNews(data || []);
+    setRecommendedNews(data || []);
   };
 
-  // ================= LOADING =================
+  // ================= SLIDER =================
+  const scrollSlider = (direction) => {
+    if (!sliderRef.current) return;
+
+    const amount = 320;
+
+    sliderRef.current.scrollBy({
+      left: direction === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
+
   if (!article) {
     return (
       <div className="py-32 text-center">
@@ -66,14 +85,11 @@ export function NewsDetail() {
   }
 
   const imageSrc = article.image_url || article.image || null;
-
   const words = article.content?.split(" ").length || 0;
   const readingTime = Math.ceil(words / 200);
 
-  // ================= UI =================
   return (
     <section className="bg-white py-20">
-
       <div className="max-w-3xl mx-auto px-6">
 
         {/* CATEGORY */}
@@ -116,87 +132,72 @@ export function NewsDetail() {
 
         {/* CONTENT */}
         <article className="text-lg text-slate-700 leading-relaxed">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            components={{
-              p: ({ children }) => (
-                <p className="mb-5 leading-relaxed">{children}</p>
-              ),
-
-              h2: ({ children }) => (
-                <h2 className="text-2xl font-bold mt-10 mb-4 text-[#191919]">
-                  {children}
-                </h2>
-              ),
-
-              h3: ({ children }) => (
-                <h3 className="text-xl font-semibold mt-8 mb-3 text-[#191919]">
-                  {children}
-                </h3>
-              ),
-
-              ul: ({ node, ...props }) => (
-                <ul className="list-disc pl-6 mb-5 space-y-2" {...props} />
-              ),
-
-              ol: ({ node, ...props }) => (
-                <ol className="list-decimal pl-6 mb-5 space-y-2" {...props} />
-              ),
-
-              li: ({ node, ...props }) => (
-                <li className="leading-relaxed" {...props} />
-              ),
-
-              strong: ({ children }) => (
-                <strong className="font-semibold text-[#191919]">
-                  {children}
-                </strong>
-              ),
-
-              blockquote: ({ children }) => (
-                <blockquote className="border-l-4 border-[#AE8737] pl-4 italic my-6 text-slate-600">
-                  {children}
-                </blockquote>
-              ),
-            }}
-          >
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {article.content}
           </ReactMarkdown>
         </article>
 
-        {/* RELATED NEWS */}
-        {relatedNews.length > 0 && (
-          <div className="mt-20">
-            <h3 className="text-2xl font-bold mb-6 text-[#191919]">
-              Artikel Lainnya
-            </h3>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {relatedNews.map((item) => (
-                <Link
-                  key={item.id}
-                  to={`/news/${item.slug}`}
-                  className="group border rounded-xl overflow-hidden hover:shadow-lg"
-                >
-                  <div className="h-40 overflow-hidden">
-                    <img
-                      src={item.image_url}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105"
-                    />
-                  </div>
-                  
-                  <div className="p-4">
-                    <h4 className="text-sm font-semibold">{item.title}</h4>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
-      {/* SCROLL BUTTON */}
+      {/* RECOMMENDED ARTICLES */}
+      {recommendedNews.length > 0 && (
+        <div className="mt-24 max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-2xl font-bold text-[#191919]">
+              Artikel yang Mungkin Kamu Sukai
+            </h3>
+
+            <div className="flex gap-2">
+              <button
+                onClick={() => scrollSlider("left")}
+                className="w-10 h-10 rounded-full border hover:bg-slate-100 flex items-center justify-center"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              <button
+                onClick={() => scrollSlider("right")}
+                className="w-10 h-10 rounded-full border hover:bg-slate-100 flex items-center justify-center"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          <div
+            ref={sliderRef}
+            className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-2"
+          >
+            {recommendedNews.map((item) => (
+              <Link
+                key={item.id}
+                to={`/news/${item.slug}`}
+                className="min-w-[300px] max-w-[300px] flex-shrink-0 group border rounded-2xl overflow-hidden hover:shadow-xl transition"
+              >
+                <div className="h-44 overflow-hidden">
+                  <img
+                    src={item.image_url}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                  />
+                </div>
+
+                <div className="p-4">
+                  <h4 className="font-semibold text-[#191919] line-clamp-2 group-hover:text-[#AE8737] transition">
+                    {item.title}
+                  </h4>
+
+                  <p className="text-sm text-slate-500 mt-2">
+                    {new Date(item.date).toLocaleDateString("id-ID")}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* SCROLL TO TOP */}
       <button
         onClick={scrollToTop}
         className={`fixed bottom-8 right-8 bg-[#AE8737] text-white p-3 rounded-full shadow-lg transition ${
@@ -205,7 +206,6 @@ export function NewsDetail() {
       >
         <ArrowUp className="w-5 h-5" />
       </button>
-
     </section>
   );
 }

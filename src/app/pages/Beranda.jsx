@@ -4,22 +4,38 @@ import {
   Building2,
   ShieldCheck,
   FileText,
+  Calendar,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Link } from "react-router-dom";
 // import heroBackground from "../hero.jpg"; // File is in public folder
 import VisiMisi from "../components/VisiMisi";
+import { useEffect, useState } from "react";
+import { Card, CardContent } from "../components/ui/card";
+import { supabase } from "../../lib/supabase";
 
 export function Beranda() {
+  const [latestNews, setLatestNews] = useState([]);
 
-  const articles = [
-    {
-      title: "Bukan Sekadar Gelar: Mengapa Penguasaan Hard Skill di Luar Kampus Semakin Krusial",
-      slug: "bukan-sekadar-gelar-mengapa-penguasaan-hard-skill-di-luar-kampus-semakin-krusial",
-    },
-  ];
-  
-  
+  useEffect(() => {
+    const fetchLatestNews = async () => {
+      const { data, error } = await supabase
+        .from("news")
+        .select("*")
+        .eq("status", "Published")
+        .lte("date", new Date().toISOString())
+        .order("date", { ascending: false })
+        .limit(4);
+
+      if (error) {
+        console.error("Error fetching latest news:", error);
+      } else {
+        setLatestNews(data || []);
+      }
+    };
+
+    fetchLatestNews();
+  }, []);
   return (
     <>
       <section className="relative bg-white py-28 md:py-36">
@@ -178,18 +194,30 @@ export function Beranda() {
             </p>
           </div>
 
-          <div className="max-w-3xl mx-auto">
-            {articles.map((article, index) => (
+          <div className="max-w-4xl mx-auto flex flex-col gap-4">
+            {latestNews.map((article) => (
               <Link
-                key={index}
+                key={article.id}
                 to={`/news/${article.slug}`}
-                className="block p-6 bg-white rounded-lg shadow mb-4"
+                className="flex items-center justify-between p-6 bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md hover:border-[#AE8737] transition-all duration-300 group"
               >
-                <h3 className="text-lg font-semibold">
+                <h3 className="text-[17px] font-medium text-[#191919] group-hover:text-[#AE8737] transition-colors line-clamp-2 pr-4">
                   {article.title}
                 </h3>
+                <ArrowRight className="w-6 h-6 text-black group-hover:text-[#AE8737] transition-colors flex-shrink-0" strokeWidth={2.5} />
               </Link>
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link to="/berita">
+              <Button
+                variant="outline"
+                className="border-[#AE8737] text-[#AE8737] hover:bg-[#AE8737] hover:text-white px-8"
+              >
+                Lihat Semua Artikel
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
