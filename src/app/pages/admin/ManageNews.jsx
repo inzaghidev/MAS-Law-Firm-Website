@@ -180,8 +180,8 @@ export function ManageNews() {
   const addHeading = () => insertMarkdown("\n\n## ");
   const addBold = () => insertMarkdown("**", "**");
   const addItalic = () => insertMarkdown("*", "*");
-  const addBullet = () => insertMarkdown("\n\n- ");
-  const addNumber = () => insertMarkdown("\n\n1. ");
+  const addBullet = () => insertMarkdown("\n- ");
+  const addNumber = () => insertMarkdown("\n1. ");
   const addLink = () => insertMarkdown("[text](https://)");
   const handleGenerateSummary = () => {
     if (!formData.content) {
