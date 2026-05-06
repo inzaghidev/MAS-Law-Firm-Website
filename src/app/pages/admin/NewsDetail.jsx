@@ -1,7 +1,7 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { supabase } from '../../lib/supabase';
-import { Calendar } from 'lucide-react';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
+import { Calendar } from "lucide-react";
 
 export function NewsDetail() {
   const { slug } = useParams();
@@ -10,9 +10,9 @@ export function NewsDetail() {
   useEffect(() => {
     const fetchArticle = async () => {
       const { data, error } = await supabase
-        .from('news')
-        .select('*')
-        .eq('slug', slug)
+        .from("news")
+        .select("*")
+        .eq("slug", slug)
         .single();
 
       if (error) {
@@ -36,7 +36,6 @@ export function NewsDetail() {
   return (
     <section className="py-24 bg-white">
       <div className="container mx-auto px-6 max-w-4xl">
-
         {/* Title */}
         <h1 className="text-3xl font-bold text-[#191919] mb-4">
           {article.title}
@@ -61,14 +60,24 @@ export function NewsDetail() {
         <div
           className="prose prose-lg max-w-none
                      prose-headings:text-[#191919]
+                     prose-headings:font-bold
+                     prose-headings:mt-8
+                     prose-headings:mb-4
                      prose-strong:text-[#191919]
                      prose-strong:font-semibold
                      prose-p:text-slate-700
+                     prose-p:mb-4
+                     prose-ul:list-disc
+                     prose-ul:my-4
+                     prose-ul:pl-6
+                     prose-ol:list-decimal
+                     prose-ol:my-4
+                     prose-ol:pl-6
                      prose-li:text-slate-700
+                     prose-li:my-2
                      prose-a:text-[#AE8737]"
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
-
       </div>
     </section>
   );
