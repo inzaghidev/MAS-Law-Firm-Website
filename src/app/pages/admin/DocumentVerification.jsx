@@ -215,7 +215,7 @@ export function DocumentVerification() {
 
             setShowForm(true);
           }}
-          className="bg-[#AE8737] text-[#191919]"
+          className="bg-[#AE8737] hover:bg-[#8f6e2d] text-[#191919] flex items-center gap-2"
         >
           <Plus className="w-4 mr-2" />
           Add Document
@@ -329,7 +329,7 @@ export function DocumentVerification() {
                   </td>
 
                   <td>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 max-h-40 overflow-y-auto overflow-x-hidden">
                       {doc.files?.map((file, i) => {
                         const fileName = file.split("/").pop() || file;
                         return (
