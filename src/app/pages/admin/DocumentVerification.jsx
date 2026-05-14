@@ -215,7 +215,7 @@ export function DocumentVerification() {
 
             setShowForm(true);
           }}
-          className="bg-[#AE8737] text-[#191919]"
+          className="bg-[#AE8737] hover:bg-[#8f6e2d] text-[#191919] flex items-center gap-2"
         >
           <Plus className="w-4 mr-2" />
           Add Document
@@ -329,21 +329,23 @@ export function DocumentVerification() {
                   </td>
 
                   <td>
-                    {doc.files?.map((file, i) => {
-                      const fileName = file.split("/").pop() || file;
-                      return (
-                        <a
-                          key={i}
-                          href={file}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center text-blue-600 text-sm border border-gray-300 rounded-md px-2 py-1 hover:bg-gray-50 transition-colors"
-                        >
-                          <Eye className="w-4 inline mr-1" />
-                          {fileName}
-                        </a>
-                      );
-                    })}
+                    <div className="flex flex-wrap gap-2 max-h-40 overflow-y-auto overflow-x-hidden">
+                      {doc.files?.map((file, i) => {
+                        const fileName = file.split("/").pop() || file;
+                        return (
+                          <a
+                            key={i}
+                            href={file}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center text-blue-600 text-sm border border-gray-300 rounded-md px-2 py-1 hover:bg-gray-50 transition-colors"
+                          >
+                            <Eye className="w-4 inline mr-1" />
+                            {fileName}
+                          </a>
+                        );
+                      })}
+                    </div>
                   </td>
 
                   <td>
