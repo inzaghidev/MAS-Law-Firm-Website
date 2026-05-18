@@ -191,7 +191,7 @@ export function Beranda() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Artikel Terbaru</h2>
             <p className="text-slate-600">
-              Insight dan informasi terbaru seputar hukum & bisnis
+              Informasi hukum, bisnis, dan insight terbaru dari MAS Law Firm
             </p>
           </div>
 
