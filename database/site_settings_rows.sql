@@ -1,0 +1,1 @@
+INSERT INTO "public"."site_settings" ("id", "site_name", "contact_email", "contact_phone", "address", "logo_uri") VALUES (1, 'M.A.S. Law Firm', 'admin@lawyermas.com', '088295359866', 'Tangerang', 'https://ikgoijeipxyfsbvgfibd.supabase.co/storage/v1/object/public/site-assets/logo.jpeg');
