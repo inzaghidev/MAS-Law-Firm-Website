@@ -8,14 +8,14 @@ Website Resmi M.A.S Law Firm — Website Company Profile dan Layanan Hukum yang 
 
 ## 🌐 Website Live
 
-🔗 URL Kantor
-https://www.lawyermas.com
-
 🔗 URL Production  
+https://www.lawyermas.com
 https://website-kantor-pengacara-mas.vercel.app
 
-🔗 Repository GitHub  
-https://github.com/inzaghidev/MAS-Law-Firm-Website
+🔗 Repository GitHub
+
+- https://github.com/inzaghidev/MAS-Law-Firm-Website
+- https://github.com/ditosatrio87-arch/lawyermass-main
 
 ---
 
@@ -63,20 +63,149 @@ Website ini dibuat untuk:
 
 # 📂 Struktur Project
 
-```bash
-MAS-Law-Firm-Website/
+```
+📁MAS-Law-Firm-Website/
 │
-├── public/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── layouts/
-│   ├── lib/
-│   ├── assets/
-│   └── App.jsx
+├── 📁public/
+│   ├── images/
+│   ├── icons/
+│   └── favicon/
+│
+├── 📁src/
+│
+│   ├── 📁app/
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   ├── routes/
+│   │   │   └── index.tsx
+│   │   └── providers/
+│   │
+│   ├── 📁assets/
+│   │   ├── images/
+│   │   ├── logos/
+│   │   ├── banners/
+│   │   └── fonts/
+│   │
+│   ├── 📁components/
+│   │   ├── figma/
+│   │   ├── 📁ui/
+│   │   │   ├── card.tsx
+│   │   │   ├── button.tsx
+│   │   │   ├── modal.tsx
+│   │   │   └── input.tsx
+│   │   │
+│   │   ├── 📁layout/
+│   │   │   ├── Navbar.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── Layout.tsx
+│   │   │   └── ScrollToTop.tsx
+│   │   │
+│   │   └── 📁common/
+│   │       ├── FloatingWhatsApp.tsx
+│   │       ├── WhatsAppButton.tsx
+│   │       └── ProtectedRoute.tsx
+│   │
+│   ├── 📁features/
+│   │
+│   │   ├── home/
+│   │   │   ├── pages/
+│   │   │   │   └── Beranda.tsx
+│   │   │   ├── components/
+│   │   │   │   ├── HeroSection.tsx
+│   │   │   │   ├── VisiMisi.tsx
+│   │   │   │   └── ServicesPreview.tsx
+│   │   │   └── hooks/
+│   │   │
+│   │   ├── berita/
+│   │   │   ├── pages/
+│   │   │   │   ├── Berita.tsx
+│   │   │   │   └── NewsDetail.tsx
+│   │   │   ├── components/
+│   │   │   │   ├── NewsCard.tsx
+│   │   │   │   └── NewsList.tsx
+│   │   │   ├── services/
+│   │   │   │   └── beritaService.ts
+│   │   │   └── hooks/
+│   │   │
+│   │   ├── layanan/
+│   │   │   ├── pages/
+│   │   │   │   └── LayananKami.tsx
+│   │   │   ├── components/
+│   │   │   │   ├── ServiceCard.tsx
+│   │   │   │   └── ConsultationCTA.tsx
+│   │   │   └── services/
+│   │   │
+│   │   ├── team/
+│   │   │   ├── pages/
+│   │   │   │   ├── TimPengacara.tsx
+│   │   │   │   ├── StaffKaryawan.tsx
+│   │   │   │   └── Portfolio.tsx
+│   │   │   ├── components/
+│   │   │   │   └── TeamCard.tsx
+│   │   │   └── services/
+│   │   │
+│   │   ├── verification/
+│   │   │   ├── pages/
+│   │   │   │   └── VerifyDocument.tsx
+│   │   │   ├── components/
+│   │   │   └── services/
+│   │   │
+│   │   ├── admin/
+│   │   │   ├── pages/
+│   │   │   │   ├── Admin.tsx
+│   │   │   │   ├── Login.tsx
+│   │   │   │   ├── DashboardOverview.tsx
+│   │   │   │   ├── ManageNews.tsx
+│   │   │   │   ├── SiteSettings.tsx
+│   │   │   │   └── DocumentVerification.tsx
+│   │   │   │
+│   │   │   ├── components/
+│   │   │   │   ├── Sidebar.tsx
+│   │   │   │   ├── AdminNavbar.tsx
+│   │   │   │   └── DashboardCard.tsx
+│   │   │   │
+│   │   │   ├── services/
+│   │   │   │   ├── newsService.ts
+│   │   │   │   ├── documentService.ts
+│   │   │   │   └── settingsService.ts
+│   │   │   │
+│   │   │   └── hooks/
+│   │
+│   ├── 📁lib/
+│   │   ├── supabase.ts
+│   │   ├── axios.ts
+│   │   └── helpers.ts
+│   │
+│   ├── 📁hooks/
+│   │   ├── useAuth.ts
+│   │   ├── useFetch.ts
+│   │   └── useDebounce.ts
+│   │
+│   ├── 📁utils/
+│   │   ├── formatDate.ts
+│   │   ├── slugify.ts
+│   │   └── constants.ts
+│   │
+│   ├── 📁styles/
+│   │   ├── index.css
+│   │   ├── tailwind.css
+│   │   ├── theme.css
+│   │   └── fonts.css
+│   │
+│   └── 📁types/
+│       ├── news.ts
+│       ├── document.ts
+│       └── user.ts
+│
+├── 📁supabase/
+│   ├── migrations/
+│   └── seed.sql
 │
 ├── .env
+├── .gitignore
 ├── package.json
-├── vite.config.js
+├── tailwind.config.js
+├── vite.config.ts
+├── vercel.json
 └── README.md
 ```
