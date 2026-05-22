@@ -125,11 +125,40 @@ export function VerifyDocument() {
         {result && (
           <div className="bg-white shadow-2xl rounded-2xl p-8 border border-green-200">
             {/* Status */}
-            <div className="flex items-center gap-3 mb-6">
-              <CheckCircle className="w-7 h-7 text-green-600" />
-              <h3 className="text-xl font-bold text-green-700">
-                Dokumen Terverifikasi
-              </h3>
+            <div className="mb-8">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                  <CheckCircle className="w-7 h-7 text-green-600" />
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-bold text-green-700">
+                    Dokumen Terverifikasi Resmi
+                  </h3>
+
+                  <p className="text-sm text-slate-500">
+                    Verification Status: Authentic & Registered
+                  </p>
+                </div>
+              </div>
+
+              {/* LEGAL NOTICE */}
+              <div className="bg-green-50 border border-green-200 rounded-xl p-5">
+                <p className="text-slate-700 leading-relaxed">
+                  Dokumen ini telah berhasil diverifikasi dan tercatat secara
+                  resmi dalam sistem administrasi digital <b>M.AS Law Firm</b>.
+                  Keaslian dokumen dinyatakan valid dan dapat digunakan sesuai
+                  dengan kebutuhan hukum maupun administrasi yang berlaku.
+                </p>
+
+                <div className="mt-4 flex flex-wrap gap-4 text-sm text-slate-500">
+                  <span>✔ Verified by M.AS Law Firm</span>
+
+                  <span>✔ Secure Digital Verification</span>
+
+                  <span>✔ Official Legal Document</span>
+                </div>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 text-sm text-slate-700">
